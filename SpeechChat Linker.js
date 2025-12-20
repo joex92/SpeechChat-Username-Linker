@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SpeechChat Username to Profile URL linker
 // @namespace    https://github.com/joex92/SpeechChat-Username-Linker
-// @version      2.2.3
+// @version      2.2.4
 // @description  this script links the usernames in chat to their respective profile URLs
 // @author       JoeX92
 // @match        https://www.speechchat.com/*
@@ -27,18 +27,18 @@
         }
     }
 
-    const observer = new MutationObserver((mutationsList) => {
+    const observer = new MutationObserver( async (mutationsList) => {
         for (const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 // mutation.addedNodes contains all the new nodes
                 try {
                     const twViewers = document.querySelectorAll(".twitch.chatters > *");
                     twViewers.entries().forEach( ( chatter ) => {
-                        if ( chatter.textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"Twitch");
+                        if ( chatter[1].textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"Twitch");
                     } );
                     const ytViewers = document.querySelectorAll(".youtube.chatters > *");
                     ytViewers.entries().forEach( ( chatter ) => {
-                        if ( chatter.textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"YouTube");
+                        if ( chatter[1].textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"YouTube");
                     } );
                     mutation.addedNodes.forEach((node) => {
                         const displayname = node.querySelector ? node.querySelector(".chat-line-display-name") : null;
