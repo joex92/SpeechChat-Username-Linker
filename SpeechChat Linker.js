@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SpeechChat Username to Profile URL linker
 // @namespace    https://github.com/joex92/SpeechChat-Username-Linker
-// @version      2.2.2
+// @version      2.2.3
 // @description  this script links the usernames in chat to their respective profile URLs
 // @author       JoeX92
 // @match        https://www.speechchat.com/*
@@ -34,11 +34,11 @@
                 try {
                     const twViewers = document.querySelectorAll(".twitch.chatters > *");
                     twViewers.entries().forEach( ( chatter ) => {
-                        chatter[1].innerHTML = userHTML(chatter.textContent,"Twitch");
+                        if ( chatter.textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"Twitch");
                     } );
                     const ytViewers = document.querySelectorAll(".youtube.chatters > *");
                     ytViewers.entries().forEach( ( chatter ) => {
-                        chatter[1].innerHTML = userHTML(chatter.textContent,"YouTube");
+                        if ( chatter.textContent ) chatter[1].innerHTML = userHTML(chatter.textContent,"YouTube");
                     } );
                     mutation.addedNodes.forEach((node) => {
                         const displayname = node.querySelector ? node.querySelector(".chat-line-display-name") : null;
