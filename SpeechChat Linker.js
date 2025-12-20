@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SpeechChat Username to Profile URL linker
 // @namespace    https://github.com/joex92/SpeechChat-Username-Linker
-// @version      2.1
+// @version      2.2
 // @description  this script links the usernames in chat to their respective profile URLs
 // @author       JoeX92
 // @match        https://www.speechchat.com/*
@@ -13,7 +13,7 @@
 (function() {
     'use strict';
 
-    function userHTML(username,platform){
+    function userHTML( username, platform = null ){
         switch ( platform ) {
             case 'Twitch':
                 return `<a href='https://www.twitch.tv/${username}' target="_blank">${username}</a>`;
@@ -32,6 +32,14 @@
             if (mutation.type === 'childList') {
                 // mutation.addedNodes contains all the new nodes
                 try {
+                    const twViewers = document.querySelector(".twitch.chatters > *");
+                    twViewers.entries().forEach( ( chatter ) => {
+                        chatter.innerHTML = userHTML(chatter.textContent,"Twitch");
+                    } );
+                    const ytViewers = document.querySelector(".youtube.chatters > *");
+                    ytViewers.entries().forEach( ( chatter ) => {
+                        chatter.innerHTML = userHTML(chatter.textContent,"YouTube");
+                    } );
                     mutation.addedNodes.forEach((node) => {
                         const displayname = node.querySelector ? node.querySelector(".chat-line-display-name") : null;
                         const platform = displayname ? node.querySelectorAll(".service-logo") : null;
