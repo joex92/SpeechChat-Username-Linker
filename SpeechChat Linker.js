@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SpeechChat Username to Profile URL linker
 // @namespace    https://github.com/joex92/SpeechChat-Username-Linker
-// @version      2.2.4
+// @version      2.2.5
 // @description  this script links the usernames in chat to their respective profile URLs
 // @author       JoeX92
 // @match        https://www.speechchat.com/*
