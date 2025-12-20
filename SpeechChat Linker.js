@@ -34,11 +34,11 @@
                 try {
                     const twViewers = document.querySelectorAll(".twitch.chatters > *");
                     twViewers.entries().forEach( ( chatter ) => {
-                        chatter.innerHTML = userHTML(chatter.textContent,"Twitch");
+                        chatter[1].innerHTML = userHTML(chatter.textContent,"Twitch");
                     } );
                     const ytViewers = document.querySelectorAll(".youtube.chatters > *");
                     ytViewers.entries().forEach( ( chatter ) => {
-                        chatter.innerHTML = userHTML(chatter.textContent,"YouTube");
+                        chatter[1].innerHTML = userHTML(chatter.textContent,"YouTube");
                     } );
                     mutation.addedNodes.forEach((node) => {
                         const displayname = node.querySelector ? node.querySelector(".chat-line-display-name") : null;
