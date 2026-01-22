@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SpeechChat Username to Profile URL linker
 // @namespace    https://github.com/joex92/SpeechChat-Username-Linker
-// @version      2.2.5
+// @version      3.0
 // @description  this script links the usernames in chat to their respective profile URLs
 // @author       JoeX92
 // @match        https://www.speechchat.com/*
@@ -74,5 +74,12 @@
     const obConfig = { childList: true, subtree: true };
     window.onload = () => {
         observer.observe(document.querySelector('#messages-ul'), obConfig);
+        const scstyle = document.createElement("style");
+        scstyle.textContent = `
+            ads {
+                display: none;
+            }
+        `;
+        document.head.appendChild(scstyle);
     };
 })();
